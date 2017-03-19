@@ -10,9 +10,9 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class Aplicacao implements WebApplicationInitializer {
+
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
-
 		AnnotationConfigWebApplicationContext webApplicationContext = new AnnotationConfigWebApplicationContext();
 		webApplicationContext.setConfigLocation("br.com.pizzaria.configuracoes");
 		Dynamic appServlet = servletContext.addServlet("appServlet", new DispatcherServlet(webApplicationContext));

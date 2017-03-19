@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.pizzaria.excecoes.IgredienteException;
 import br.com.pizzaria.modelo.entidades.Ingrediente;
 import br.com.pizzaria.modelo.enumeracoes.CategoriaDeIngredientes;
 import br.com.pizzaria.modelo.repositorios.IngredientesRepositorios;
@@ -42,18 +42,17 @@ public class IngredienteController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String salvarIngredientes(@Valid @ModelAttribute Ingrediente ingrediente, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			FieldError error = bindingResult.getFieldErrors().get(0);
-			redirectAttributes.addFlashAttribute("mensagenErro",
-					"Não foi possível salvar o ingrediente " + error.getField() + " " + error.getDefaultMessage());
-
+			throw new IgredienteException();
 		} else {
 			IngredientesRepositorios.save(ingrediente);
-			redirectAttributes.addFlashAttribute("mensagenInfo", "Ingrediente salvo com sucesso!");
+
 		}
-		return "redirect:/app/ingredientes";
+		model.addAttribute("ingredientes", IngredientesRepositorios.findAll());
+		model.addAttribute("categorias", CategoriaDeIngredientes.values());
+		return "ingrediente/tabela-ingredientes";
 
 	}
 

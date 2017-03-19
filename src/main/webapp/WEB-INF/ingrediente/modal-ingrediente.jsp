@@ -9,7 +9,7 @@
 	role="dialog" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form method="post">
+			<form id="form-ingrediente" method="post">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -30,7 +30,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button id="btn-salvar" type="submit" class="btn btn-primary">Salvar
+					<button id="btn-salvar" type="button" class="btn btn-primary">Salvar
 						Informações</button>
 				</div>
 			</form>

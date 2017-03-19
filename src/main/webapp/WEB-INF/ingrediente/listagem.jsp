@@ -32,46 +32,18 @@
 			<div class="alert alert-info">${mensagenInfo}</div>
 		</div>
 	</c:if>
-	<section class="container">
-		<table
-			class="table table-hover table-condensed table-stripet table-bordered">
-			<thead>
-				<tr>
-					<td>#</td>
-					<td>Nome</td>
-					<td>categoria</td>
-				</tr>
-			</thead>
 
-			<tbody>
-				<c:forEach items="${ingredientes}" var="ingrediente">
-					<tr>
-						<td>${ingrediente.id}</td>
-						<td>${ingrediente.nome}</td>
-						<td>${ingrediente.categoria}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-
-			<tfoot>
-				<tr>
-					<td colspan="3">Ingredientes cadastrados:
-						${ingredientes.size()}</td>
-				</tr>
-				<tr>
-					<td colspan="3">
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#modal-ingrediente">Cadastrar Ingredientes</button>
-					</td>
-				</tr>
-				<tr></tr>
-			</tfoot>
-		</table>
+	<section class="container" id="secao-ingrediente">
+		<jsp:include page="tabela-ingredientes.jsp" />
 	</section>
 	<jsp:include page="modal-ingrediente.jsp" />
+
+
+
 	<script type="text/javascript"
 		src="${path}/static/js/jquery-2.1.3.min.js"></script>
 	<script type="text/javascript"
 		src="${path}/static/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${path}/static/js/ingredientes.js"></script>
 </body>
 </html>

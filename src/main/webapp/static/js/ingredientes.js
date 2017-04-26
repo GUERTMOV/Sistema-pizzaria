@@ -56,7 +56,17 @@ var aplicarListeners = function() {
 			$('#modal-ingrediente').modal('show');
 		});
 	});
+	
+	
+	
+$('.btn-deletar').on('click',function(){
+			alert('excluindo');
+});
 
+
+
+	
+	/*
 	$('.btn-deletar').on(
 			'click',
 			function() {
@@ -78,5 +88,6 @@ var aplicarListeners = function() {
 				});
 
 			});
+	*/
 
 }

@@ -11,7 +11,7 @@
 	<thead>
 		<tr>
 			<td style="width: 10%">ID</td>
-			<td style="width: 50%">NONE</td>
+			<td style="width: 50%">NOME</td>
 			<td style="width: 20%">CATEGORIA</td>
 			<td style="width: 20%">AÇÃO</td>
 		</tr>
@@ -37,7 +37,7 @@
 		<tr>
 			<td colspan="5">
 				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#modal-ingrediente">Cadastrar Ingrediente</button>
+					data-target="#modal-ingrediente">Novo Ingrediente</button>
 			</td>
 		</tr>
 	</tfoot>

@@ -1,6 +1,8 @@
 package br.com.pizzaria.modelo.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class Ingrediente {
 	private String nome;
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private CategoriaDeIngredientes categoria;
 
 	public Long getId() {

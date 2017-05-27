@@ -26,7 +26,7 @@ public class Pizza {
 	@NotEmpty
 	private String nome;
 
-	@NotEmpty
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private CategoriaDePizza categoria;
 

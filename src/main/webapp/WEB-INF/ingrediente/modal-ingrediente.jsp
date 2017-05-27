@@ -21,17 +21,20 @@
 				<div class="modal-body">
 					<label for="nome">Nome: </label> 
 					<input id="nome" name="nome" class="form-control"> 
+					
 					<label for="categoria">Categoria:</label>
 					<select id="categoria" name="categoria" class="form-control">
 					<c:forEach items="${categorias}" var="categoria">
 					<option value="${categoria}">${categoria}</option>					
 					</c:forEach>		
-					</select>					
+					</select>		
+					
+					<input id="id" name="id" type="hidden">			
 				</div>
+				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					<button id="btn-salvar" type="button" class="btn btn-primary">Salvar
-						Informações</button>
+					<button id="btn-salvar" type="button" class="btn btn-primary">Salvar</button>
 				</div>
 			</form>
 		</div>

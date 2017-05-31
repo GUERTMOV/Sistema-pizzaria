@@ -43,6 +43,7 @@ public class ConfiguracaoBD {
 		jpaProterties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		jpaProterties.put("hibernate.hbm2ddl.auto", "update");
 		jpaProterties.put("hibernate.show_sql", "true");
+		jpaProterties.put("hibernate.format_sql", "true");
 		entityManagerFactoryBean.setJpaProperties(jpaProterties);
 		return entityManagerFactoryBean;
 	}

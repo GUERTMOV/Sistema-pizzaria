@@ -25,8 +25,12 @@ public class Aplicacao implements WebApplicationInitializer {
 		appServlet.addMapping("/app/*");
 		servletContext.addListener(new ContextLoaderListener(webApplicationContext));
 
-		
-		FilterRegistration.Dynamic filter = servletContext.addFilter("openEntityManagerFilter", buildOpenEntityManagerFilter());
+		/*
+		 * o código abaixo e devido ao problema que ocorre no JPA ao buscar um
+		 * objeto relacionado com EAGER e aa trnsação já esta feichada.
+		 */
+		FilterRegistration.Dynamic filter = servletContext.addFilter("openEntityManagerFilter",
+				buildOpenEntityManagerFilter());
 		filter.addMappingForUrlPatterns(getDispatcherTypes(), false, "/*");
 
 	}

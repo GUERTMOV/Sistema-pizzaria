@@ -23,25 +23,28 @@
 	src="${path}/static/js/jquery-2.1.3.min.js"></script>
 <script type="text/javascript"
 	src="${path}/static/bootstrap/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="${path}/static/js/ingredientes.js"></script>
 </head>
 
 <body>
-	<c:if test="${not empty mensagenErro}">
-		<div class="container">
-			<div class="alert alert-danger">${mensagenErro}</div>
-		</div>
-	</c:if>
-	<c:if test="${not empty mensagenInfo}">
-		<div class="container">
-			<div class="alert alert-info">${mensagenInfo}</div>
-		</div>
-	</c:if>
+	<div class="container">
+		<jsp:include page="../menu.jsp"></jsp:include>
+		<c:if test="${not empty mensagenErro}">
+			<div>
+				<div class="alert alert-danger">${mensagenErro}</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty mensagenInfo}">
+			<div>
+				<div class="alert alert-info">${mensagenInfo}</div>
+			</div>
+		</c:if>
 
-	<section class="container" id="secao-ingrediente">
-		<jsp:include page="tabela-ingredientes.jsp" />
-	</section>
-	<jsp:include page="modal-ingrediente.jsp" />
-
+		<section class="container" id="secao-ingrediente">
+			<jsp:include page="tabela-ingredientes.jsp" />
+		</section>
+		<jsp:include page="modal-ingrediente.jsp" />
+	</div>
 </body>
 </html>

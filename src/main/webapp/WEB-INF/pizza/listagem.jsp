@@ -27,22 +27,25 @@
 </head>
 
 <body>
-	<c:if test="${not empty mensagenErro}">
-		<div class="container">
-			<div class="alert alert-danger">${mensagenErro}</div>
-		</div>
-	</c:if>
-	<c:if test="${not empty mensagenInfo}">
-		<div class="container">
-			<div class="alert alert-info">${mensagenInfo}</div>
-		</div>
-	</c:if>
+	<div class="container">
+		<jsp:include page="../menu.jsp"></jsp:include>
+		<c:if test="${not empty mensagenErro}">
+			<div>
+				<div class="alert alert-danger">${mensagenErro}</div>
+			</div>
+		</c:if>
+		<c:if test="${not empty mensagenInfo}">
+			<div>
+				<div class="alert alert-info">${mensagenInfo}</div>
+			</div>
+		</c:if>
 
-	<section class="container" id="secao-pizzas">
-		<jsp:include page="tabela-pizzas.jsp" />
-	</section>
+		<section class="container" id="secao-pizzas">
+			<jsp:include page="tabela-pizzas.jsp" />
+		</section>
 
-	<jsp:include page="modal-pizza.jsp" />
 
+		<jsp:include page="modal-pizza.jsp" />
+	</div>
 </body>
 </html>

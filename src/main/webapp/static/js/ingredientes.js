@@ -50,15 +50,15 @@ var aplicarListeners = function() {
 	});
 
 	$('.btn-deletar').on('click', function() {
-
 		var id = $(this).parents('tr').data('id');
-		var ingredientes = $('quantidade-ingredientes').text();
-
+		var csrf = $('#csrf').val();
 		$.ajax({
 			url : "ingredientes/" + id,
 			type : 'DELETE',
+			headers: {'X-CSRF-TOKEN':csrf} ,
 			success : function(result) {
 				$('tr[data-id="' + id + '"]').remove();
+				var ingredientes = $('quantidade-ingredientes').text();
 				$('quantidade-ingredientes').text(ingredientes - 1);
 			}
 		});

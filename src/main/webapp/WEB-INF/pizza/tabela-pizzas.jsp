@@ -30,8 +30,12 @@
 					${ingrediente.nome}<br>
 					</c:forEach></td>
 				<td>
-					<button type="button" class="btn btn-warning btn-editar">Editar</button>
-					<button type="button" class="btn btn-danger btn-deletar">Deletar</button>
+					<button type="button" class="btn btn-warning btn-editar">
+						<spring:message code="view.pizzas.tabela.coluna.editar" />
+					</button>
+					<button type="button" class="btn btn-danger btn-deletar">
+						<spring:message code="view.pizzas.tabela.coluna.excluir" />
+					</button>
 				</td>
 			</tr>
 		</c:forEach>

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import br.com.pizzaria.excecoes.IngredienteException;
 import br.com.pizzaria.modelo.entidades.Ingrediente;
 import br.com.pizzaria.modelo.enumeracoes.CategoriaDeIngredientes;
-import br.com.pizzaria.modelo.repositorios.IngredientesRepositorios;
+import br.com.pizzaria.modelo.servicos.ServicoIngrediente;
 
 //  //app/ingredientes (metodo GET) -> listarIngredientes()
 
@@ -31,12 +31,12 @@ import br.com.pizzaria.modelo.repositorios.IngredientesRepositorios;
 public class IngredienteController {
 
 	@Autowired
-	private IngredientesRepositorios IngredientesRepositorios;
+	private ServicoIngrediente servicoIngrediente;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String listarIngredientes(Model model) {
 
-		Iterable<Ingrediente> ingredientes = IngredientesRepositorios.findAll();
+		Iterable<Ingrediente> ingredientes = servicoIngrediente.listar();
 
 		model.addAttribute("titulo", "Listagem de Ingredientes");
 		model.addAttribute("ingredientes", ingredientes);
@@ -53,9 +53,9 @@ public class IngredienteController {
 		if (bindingResult.hasErrors()) {
 			throw new IngredienteException();
 		} else {
-			IngredientesRepositorios.save(ingrediente);
+			servicoIngrediente.salvar(ingrediente);
 		}
-		model.addAttribute("ingredientes", IngredientesRepositorios.findAll());
+		model.addAttribute("ingredientes", servicoIngrediente.listar());
 		model.addAttribute("categorias", CategoriaDeIngredientes.values());
 		return "ingrediente/tabela-ingredientes";
 	}
@@ -63,7 +63,7 @@ public class IngredienteController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public ResponseEntity<String> deletarIgrediente(@PathVariable Long id) {
 		try {
-			IngredientesRepositorios.delete(id);
+			servicoIngrediente.remover(id);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -74,7 +74,7 @@ public class IngredienteController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	@ResponseBody
 	public Ingrediente buscarIngrediente(@PathVariable Long id) {
-		Ingrediente ingrediente = IngredientesRepositorios.findOne(id);
+		Ingrediente ingrediente = servicoIngrediente.buscar(id);
 		return ingrediente;
 	}
 

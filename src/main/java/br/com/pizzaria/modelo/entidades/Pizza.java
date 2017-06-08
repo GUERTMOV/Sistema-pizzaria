@@ -8,7 +8,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -35,6 +37,10 @@ public class Pizza {
 
 	@ManyToMany
 	private Set<Ingrediente> ingredientes;
+
+	@ManyToOne
+	@JoinColumn(name = "dono")
+	private Pizzaria dono;
 
 	public Long getId() {
 		return id;
@@ -74,6 +80,14 @@ public class Pizza {
 
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
+	}
+
+	public Pizzaria getDono() {
+		return dono;
+	}
+
+	public void setDono(Pizzaria dono) {
+		this.dono = dono;
 	}
 
 	@Override

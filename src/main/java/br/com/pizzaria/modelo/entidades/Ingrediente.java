@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.pizzaria.modelo.enumeracoes.CategoriaDeIngredientes;
 
 @Entity
@@ -29,6 +31,7 @@ public class Ingrediente {
 	private CategoriaDeIngredientes categoria;
 	@ManyToOne
 	@JoinColumn(name = "dono")
+	@JsonIgnore
 	private Pizzaria dono;
 
 	public Long getId() {

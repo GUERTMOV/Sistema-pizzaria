@@ -12,11 +12,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pizzaria implements UserDetails {
@@ -36,6 +40,10 @@ public class Pizzaria implements UserDetails {
 	private Set<String> telefone;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Permissao> permissoes;
+	@ManyToOne
+	@JoinColumn(name = "dono")
+	@JsonIgnore
+	private Pizzaria dono;
 
 	public Long getId() {
 		return id;
@@ -99,6 +107,14 @@ public class Pizzaria implements UserDetails {
 
 	public void setTelefone(Set<String> telefone) {
 		this.telefone = telefone;
+	}
+
+	public Pizzaria getDono() {
+		return dono;
+	}
+
+	public void setDono(Pizzaria dono) {
+		this.dono = dono;
 	}
 
 	@Override

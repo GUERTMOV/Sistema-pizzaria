@@ -29,7 +29,7 @@
 
 <body>
 	<div class="container">
-		<jsp:include page="../menu.jsp"></jsp:include>
+		<jsp:include page="../menu_pizzaria.jsp"></jsp:include>
 		<c:if test="${not empty mensagenErro}">
 			<div>
 				<div class="alert alert-danger">${mensagenErro}</div>

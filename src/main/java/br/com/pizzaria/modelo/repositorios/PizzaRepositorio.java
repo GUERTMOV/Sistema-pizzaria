@@ -2,7 +2,6 @@ package br.com.pizzaria.modelo.repositorios;
 
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +15,6 @@ public interface PizzaRepositorio extends CrudRepository<Pizza, Long> {
 
 	Pizza findByIdAndDono(Long id, Pizzaria dono);
 
-	List<Pizza> findAll(Sort sort);
+	List<Pizza> findAll();
 
 }

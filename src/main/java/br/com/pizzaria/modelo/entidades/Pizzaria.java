@@ -12,15 +12,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Pizzaria implements UserDetails {
@@ -29,21 +27,22 @@ public class Pizzaria implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private String login;
 	private String senha;
 	private Calendar dataCadastro;
 	private String nome;
+	@NotNull
+	private String endereco;
 	@ElementCollection
 	private Set<String> email;
 	@ElementCollection
 	private Set<String> telefone;
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Permissao> permissoes;
-	@ManyToOne
-	@JoinColumn(name = "dono")
-	@JsonIgnore
-	private Pizzaria dono;
+	@OneToMany(mappedBy = "dono")
+	private Set<Pizza> pizzas;
 
 	public Long getId() {
 		return id;
@@ -109,12 +108,20 @@ public class Pizzaria implements UserDetails {
 		this.telefone = telefone;
 	}
 
-	public Pizzaria getDono() {
-		return dono;
+	public Set<Pizza> getPizzas() {
+		return pizzas;
 	}
 
-	public void setDono(Pizzaria dono) {
-		this.dono = dono;
+	public void setPizzas(Set<Pizza> pizzas) {
+		this.pizzas = pizzas;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override

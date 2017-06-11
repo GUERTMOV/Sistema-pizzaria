@@ -5,42 +5,30 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
+
 <table
 	class="table table-hover table-condensed table-striped table-bordered">
 	<thead>
 		<tr>
-			<td style="width: 10%">ID</td>
-			<td style="width: 30%">NOME</td>
-			<td style="width: 10%">PREÇO</td>
-			<td style="width: 10%">CATEGORIA</td>
-			<td style="width: 20%">INGREDIENTES</td>
-			<td style="width: 20%">AÇÃO</td>
+			<td style="width: 30%">Nome</td>
+			<td style="width: 40%">Endereço</td>
+			<td style="width: 20%">Atendendo desde</td>
+			<td style="width: 10%">Entre em contato</td>
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach items="${pizzas}" var="pizza">
-			<tr data-id="${pizza.id}">
-				<td>${pizza.id}</td>
-				<td>${pizza.nome}</td>
-				<td><fmt:formatNumber value="${pizza.preco}" type="currency" /></td>
-				<td>${pizza.categoria}</td>
-				<td><c:forEach items="${pizza.ingredientes}" var="ingrediente">
-					${ingrediente.nome}<br>
-					</c:forEach></td>
-				<td>
-					<button type="button" class="btn btn-warning btn-editar">
-						<spring:message code="view.pizzas.tabela.coluna.editar" />
-					</button>
-					<button type="button" class="btn btn-danger btn-deletar">
-						<spring:message code="view.pizzas.tabela.coluna.excluir" />
-					</button>
-				</td>
+		<c:forEach items="${pizzarias}" var="pizzaria">
+			<tr data-id="${pizzaria.id}">
+				<td>${pizzaria.nome}</td>
+				<td>${pizzaria.endereco}</td>
+				<td><fmt:formatDate value="${pizzaria.dataCadastro.time}" pattern="dd/MM/yyyy" /></td>
+				<td><a href="#">Contato</a></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="5">Pizzas encotradas: <span id="quantidade-pizzas">${pizzarias.size()}</span></td>
+			<td colspan="7">Pizzaria encontradas: <span	id="quantidade-pizzaria">${pizzarias.size()}</span></td>
 		</tr>
 	</tfoot>
 </table>
